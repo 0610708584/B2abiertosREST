@@ -11,7 +11,7 @@ export default async(req, res) => {
 							           .then(response => response.text())
 				var pollutions = JSON.parse(data)
 
-        var pollution = pollutions.filter(function(pollutions) { return pollutions.Contaminante == pollutant});
+        var pollution = pollutions.filter(function(pollutions) { return pollutions.Contaminante.toLowerCase() == pollutant.toLowerCase()});
 				return res.status(200).json(pollution)
 			} catch(error) {
 				return res.status(400).json({error: error.message})
