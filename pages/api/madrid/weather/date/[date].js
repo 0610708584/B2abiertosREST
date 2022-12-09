@@ -12,7 +12,11 @@ export default async(req, res) => {
 				var weather = JSON.parse(data.substring(1))
 
         var record = (weather.records).find(el => (el.fecha == date))
-				return res.status(200).json(record)
+				if(record == null) {
+					return res.status(200).json([])
+				}
+				
+				return res.status(200).json([record])
 			} catch(error) {
 				return res.status(400).json({error: error.message})
 			}
